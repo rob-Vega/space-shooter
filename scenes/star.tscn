@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://7t8iga0arenj"]
+
+[ext_resource type="Texture2D" uid="uid://dwyxwgx32oqxp" path="res://graphics/effects/star1.png" id="1_imp53"]
+[ext_resource type="Script" path="res://scenes/star.gd" id="2_6mlhd"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fhdr1"]
+load_path = "res://.godot/imported/star2.png-6eae73b68c87796859dc087911981275.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lmlpp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_imp53")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_fhdr1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Star" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_lmlpp")
+autoplay = "default"
+frame_progress = 0.595535
+script = ExtResource("2_6mlhd")
