@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://brmenyw7mlnqg"]
+
+[ext_resource type="FontFile" uid="uid://bdvvmfwevf0wh" path="res://graphics/fonts/kenvector_future.ttf" id="1_k31q5"]
+[ext_resource type="Script" path="res://scenes/game_over_screen.gd" id="1_sh0fg"]
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("1_sh0fg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.12549, 0.129412, 0.145098, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.0
+offset_top = -45.0
+offset_right = 186.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="GameOverLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k31q5")
+theme_override_font_sizes/font_size = 52
+text = "Game Over"
+vertical_alignment = 1
+
+[node name="YourScoreLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k31q5")
+theme_override_font_sizes/font_size = 24
+text = "Your Score:"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -172.5
+offset_top = -67.0
+offset_right = 172.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 40
+
+[node name="RetryLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k31q5")
+theme_override_font_sizes/font_size = 24
+text = "Space to Start Again"

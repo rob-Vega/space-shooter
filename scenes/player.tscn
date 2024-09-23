@@ -1,46 +1,40 @@
 [gd_scene load_steps=6 format=3 uid="uid://ckpjp6e0tpuyg"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_rwa4q"]
-[ext_resource type="Texture2D" uid="uid://be2yncat2mkkn" path="res://graphics/ships/playerShip1_green.png" id="1_upqqn"]
-[ext_resource type="Texture2D" uid="uid://bi4ll703dsb18" path="res://graphics/parts/beam0.png" id="2_h3bgy"]
-[ext_resource type="Texture2D" uid="uid://75ht2xx61lod" path="res://graphics/parts/engine2.png" id="3_12rgb"]
-[ext_resource type="Texture2D" uid="uid://lcf8hd1u1qkl" path="res://graphics/effects/fire00.png" id="4_1ja0a"]
+[ext_resource type="Texture2D" uid="uid://cu4r67strdgsd" path="res://graphics/effects/effect_yellow.png" id="2_1uglp"]
+[ext_resource type="Texture2D" uid="uid://0pd8ynv0tj0g" path="res://graphics/ships/ship_G.png" id="4_o3n3q"]
+[ext_resource type="AudioStream" uid="uid://bxhet1ot4ja0e" path="res://audio/laserLarge_000.ogg" id="6_tgkae"]
+[ext_resource type="AudioStream" uid="uid://cgmk6kawei21d" path="res://audio/thrusterFire_001.ogg" id="7_81ix7"]
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_rwa4q")
 
-[node name="BeamSprite" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -41)
-rotation = 1.5708
-scale = Vector2(0.125, 0.25)
-texture = ExtResource("2_h3bgy")
-
-[node name="EngineSprite" type="Sprite2D" parent="."]
-position = Vector2(0, 41)
-rotation = -3.14159
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_12rgb")
-
 [node name="FireSprite" type="Sprite2D" parent="."]
-position = Vector2(0, 54)
+position = Vector2(0, 28)
 rotation = -3.14159
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_1ja0a")
+texture = ExtResource("2_1uglp")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_upqqn")
+texture = ExtResource("4_o3n3q")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-8, -38, 8, -38, 11, -13, 36, 2, 41, 0, 44, -6, 49, -6, 46, 23, 41, 20, 36, 23, 14, 27, 8, 37, -8, 37, -14, 27, -37, 23, -42, 19, -42, 25, -46, 24, -49, -5, -44, -6, -42, 0, -36, 3, -12, -11)
+build_mode = 1
+polygon = PackedVector2Array(0, -24, -25, 16, -16, 24, -8, 16, 8, 16, 15, 24, 24, 16)
 
 [node name="LaserStartMarker" type="Marker2D" parent="."]
 position = Vector2(0, -43)
 gizmo_extents = 0.0
 
 [node name="LaserTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.25
 one_shot = true
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_tgkae")
+
+[node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_81ix7")
 
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdnk052o7yahw"]
+
+[ext_resource type="Script" path="res://scenes/player_2_0.gd" id="1_d333n"]
+[ext_resource type="Texture2D" uid="uid://75ht2xx61lod" path="res://graphics/parts/engine2.png" id="2_05g6x"]
+[ext_resource type="Texture2D" uid="uid://lcf8hd1u1qkl" path="res://graphics/effects/fire00.png" id="3_ubu26"]
+[ext_resource type="Texture2D" uid="uid://be2yncat2mkkn" path="res://graphics/ships/playerShip1_green.png" id="4_ttinq"]
+[ext_resource type="AudioStream" uid="uid://bxhet1ot4ja0e" path="res://audio/laserLarge_000.ogg" id="5_wcb82"]
+[ext_resource type="AudioStream" uid="uid://cgmk6kawei21d" path="res://audio/thrusterFire_001.ogg" id="6_ljchl"]
+
+[node name="Player2_0" type="CharacterBody2D"]
+collision_mask = 6
+script = ExtResource("1_d333n")
+
+[node name="EngineSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 41)
+rotation = -3.14159
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_05g6x")
+
+[node name="FireSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 54)
+rotation = -3.14159
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ubu26")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_ttinq")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, -38, 8, -38, 11, -13, 36, 2, 41, 0, 44, -6, 49, -6, 46, 23, 41, 20, 36, 23, 14, 27, 8, 37, -8, 37, -14, 27, -37, 23, -42, 19, -42, 25, -46, 24, -49, -5, -44, -6, -42, 0, -36, 3, -12, -11)
+
+[node name="LaserStartMarker" type="Marker2D" parent="."]
+position = Vector2(0, -43)
+gizmo_extents = 0.0
+
+[node name="LaserTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_wcb82")
+
+[node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ljchl")
+
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]

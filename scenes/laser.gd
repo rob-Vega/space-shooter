@@ -1,18 +1,16 @@
 extends Area2D
 
-@export var speed = 700
+
+@export var speed = 1000
+var direction: Vector2
 
 
 func _ready() -> void:
 	$Sprite2D.scale = Vector2(0, 0)
 	var tween = create_tween()
-	tween.tween_property($Sprite2D, "scale", Vector2(1, 1), 0.2)
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	position.y -= speed * delta
+	tween.tween_property($Sprite2D, "scale", Vector2(0.25, 0.65), 0.2)
 
 
-func _on_area_entered(area: Area2D) -> void:
-	print("area")
+func _physics_process(delta: float) -> void:
+	direction = Vector2(0, -1).rotated(rotation)
+	position += direction * speed * delta
